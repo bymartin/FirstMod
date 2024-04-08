@@ -1,5 +1,6 @@
 package net.barry.firstmod;
 
+import net.barry.firstmod.items.Moonshine;
 import net.barry.firstmod.items.Spear;
 import net.fabricmc.api.ModInitializer;
 
@@ -17,6 +18,11 @@ public class FirstMod implements ModInitializer {
     public static final String MOD_ID = "firstmod";
 	public static final Item BANANA = new Item(new Item.Settings().maxCount(20).food(FoodComponents.BEEF)); // or new FabricItemSettings()
 	public static final Item SPEAR = new Spear(new Item.Settings().maxCount(1));
+
+	// recipe stuff
+	//You can find the list of item ids here: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Items
+	//You can see the information needed for each recipe type here: https://minecraft.fandom.com/wiki/Recipe#List_of_recipe_types
+	public static final Item MOONSHINE = new Moonshine();
 
 	// custom item group
 	public static final ItemGroup WEAPONS = Registry.register(Registries.ITEM_GROUP,
@@ -44,7 +50,12 @@ public class FirstMod implements ModInitializer {
 			entries.addAfter(Items.IRON_SWORD, SPEAR);
 		});
 
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
+			entries.add(MOONSHINE);
+		});
+
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "banana"), BANANA);
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "spear"), SPEAR);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "moonshine"), MOONSHINE);
 	}
 }

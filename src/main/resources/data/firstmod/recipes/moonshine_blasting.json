@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "minecraft:water_bucket"
+    },
+    "result": "firstmod:moonshine",
+    "experience": 0.1,
+    "cookingtime": 40
+}
